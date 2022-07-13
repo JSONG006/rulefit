@@ -32,7 +32,7 @@ class RuleCondition():
                  support,
                  feature_name = None):
         self.feature_index = feature_index
-        self.threshold = threshold
+        self.threshold = np.round(threshold, 3)
         self.operator = operator
         self.support = support
         self.feature_name = feature_name
