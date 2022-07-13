@@ -181,7 +181,7 @@ def extract_rules_from_tree(tree, feature_names=None):
             else:
                 feature_name = feature
             rule_condition = RuleCondition(feature_index=feature,
-                                           threshold=threshold,
+                                           threshold=np.round(threshold, 3),
                                            operator=operator,
                                            support = tree.n_node_samples[node_id] / float(tree.n_node_samples[0]),
                                            feature_name=feature_name)
@@ -191,7 +191,7 @@ def extract_rules_from_tree(tree, feature_names=None):
         ## if not terminal node
         if tree.children_left[node_id] != tree.children_right[node_id]:
             feature = tree.feature[node_id]
-            threshold = tree.threshold[node_id]
+            threshold = np.round(tree.threshold[node_id], 3)
 
             left_node_id = tree.children_left[node_id]
             traverse_nodes(left_node_id, "<=", threshold, feature, new_conditions)
